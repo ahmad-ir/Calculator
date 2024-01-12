@@ -2,7 +2,7 @@ from tkinter import Button, Entry, StringVar
 
 class Calculator():
 
-
+    # Constructor
     def __init__(self, master):
        master.title('Calculator') 
        master.geometry("357x420+0+0") 
@@ -11,12 +11,15 @@ class Calculator():
 
        self.equation = StringVar()
        self.entry_value = ''
+
+       # Create entry widget
        entry = Entry(
            width =17, bg='#ccddff', 
            font= ('Arial Bold', 28),
            textvariable=self.equation)
        entry.place(x=0, y=0)
 
+       # Create buttons and place them
        Button(width= 11, height=4, text='(', relief='flat', bg='white',
                command=lambda: self.show('(')).place(x=0, y=50)
        Button(width= 11, height=4, text=')', relief='flat', bg='white',
@@ -58,15 +61,17 @@ class Calculator():
        Button(width= 11, height=4, text='C', relief='flat',
                command=lambda: self.clear()).place(x=0, y=350)
 
-
+    # Add pressed button string to the equation string
     def show(self, value):
         self.entry_value += str(value)
         self.equation.set(self.entry_value)
-    
+
+   # Clear the equation value 
     def clear(self):
         self.entry_value = ''
         self.equation.set(self.entry_value)
 
+    # Evaluate the expresion and update equation
     def solve(self):
         result = eval(self.entry_value)
         self.equation.set(result)
